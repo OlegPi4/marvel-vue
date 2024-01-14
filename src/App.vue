@@ -17,7 +17,7 @@
         
         </header>
 
-        <main >
+        <main  v-if="showCharacters">
             
             <ramdon-charact /> 
             <div class="char__content">
@@ -29,7 +29,7 @@
             <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
         
         </main> 
-        <main >
+        <main  v-if="showComics" >
             <div class="app__banner">
                 <img src="img/Avengers.png" alt="Avengers">
                 <div class="app__banner-text">
