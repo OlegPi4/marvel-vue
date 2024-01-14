@@ -14,615 +14,82 @@
                     <li><a href="#">Comics</a></li>
                 </ul>
             </nav>
+        
         </header>
 
-        <main>
-            <div class="randomchar">
-                <div class="randomchar__block">
-                    <img src="img/thor.jpeg" alt="Random character" class="randomchar__img">
-                    <div class="randomchar__info">
-                        <p class="randomchar__name">Thor</p>
-                        <p class="randomchar__descr">
-                            As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir. While others have described Thor as an over-muscled, oafish imbecile, he's quite smart and compassionate...
-                        </p>
-                        <div class="randomchar__btns">
-                            <a href="#" class="button button__main">
-                                <div class="inner">homepage</div>
-                            </a>
-                            <a href="#" class="button button__secondary">
-                                <div class="inner">Wiki</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="randomchar__static">
-                    <p class="randomchar__title">
-                        Random character for today!<br>
-                        Do you want to get to know him better?
-                    </p>
-                    <p class="randomchar__title">
-                        Or choose another one
-                    </p>
-                    <button class="button button__main">
-                        <div class="inner">try it</div>
-                    </button>
-                    <img src="img/mjolnir.png" alt="mjolnir" class="randomchar__decoration">
-                </div>
-            </div>
-
+        <main >
+            
+            <ramdon-charact /> 
             <div class="char__content">
-                <div class="char__list">
-                    <ul class="char__grid">
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item char__item_selected">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                        <li class="char__item">
-                            <img src="img/abyss.jpg" alt="abyss">
-                            <div class="char__name">Abyss</div>
-                        </li>
-                    </ul>
-                    <button class="button button__main button__long">
-                        <div class="inner">load more</div>
-                    </button>
-                </div>
-
-                <div class="char__info">
-                    <div class="char__basics">
-                        <img src="img/thor.jpeg" alt="abyss">
-                        <div>
-                            <div class="char__info-name">thor</div>
-                            <div class="char__btns">
-                                <a href="#" class="button button__main">
-                                    <div class="inner">homepage</div>
-                                </a>
-                                <a href="#" class="button button__secondary">
-                                    <div class="inner">Wiki</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="char__descr">
-                        In Norse mythology, Loki is a god or jötunn (or both). Loki is the son of Fárbauti and Laufey, and the brother of Helblindi and Býleistr. By the jötunn Angrboða, Loki is the father of Hel, the wolf Fenrir, and the world serpent Jörmungandr. By Sigyn, Loki is the father of Nari and/or Narfi and with the stallion Svaðilfari as the father, Loki gave birth—in the form of a mare—to the eight-legged horse Sleipnir. In addition, Loki is referred to as the father of Váli in the Prose Edda.
-                    </div>
-                    <div class="char__comics">Comics:</div>
-                    <ul class="char__comics-list">
-                        <li class="char__comics-item">
-                            All-Winners Squad: Band of Heroes (2011) #3
-                        </li>
-                        <li class="char__comics-item">
-                            Alpha Flight (1983) #50
-                        </li>
-                        <li class="char__comics-item">
-                            Amazing Spider-Man (1999) #503
-                        </li>
-                        <li class="char__comics-item">
-                            Amazing Spider-Man (1999) #504
-                        </li>
-                        <li class="char__comics-item">
-                            AMAZING SPIDER-MAN VOL. 7: BOOK OF EZEKIEL TPB (Trade Paperback)
-                        </li>
-                        <li class="char__comics-item">
-                            Amazing-Spider-Man: Worldwide Vol. 8 (Trade Paperback)
-                        </li>
-                        <li class="char__comics-item">
-                            Asgardians Of The Galaxy Vol. 2: War Of The Realms (Trade Paperback)
-                        </li>
-                        <li class="char__comics-item">
-                            Vengeance (2011) #4
-                        </li>
-                        <li class="char__comics-item">
-                            Avengers (1963) #1
-                        </li>
-                        <li class="char__comics-item">
-                            Avengers (1996) #1
-                        </li>
-                    </ul>
-                    <p class="char__select">Please select a character to see information</p>
-                    <div class="skeleton">
-                        <div class="pulse skeleton__header">
-                            <div class="pulse skeleton__circle"></div>
-                            <div class="pulse skeleton__mini"></div>
-                        </div>
-                        <div class="pulse skeleton__block"></div>
-                        <div class="pulse skeleton__block"></div>
-                        <div class="pulse skeleton__block"></div>
-                    </div>
-                </div>
+                
+                <char-list />
+                
+                <char-info />
             </div>
-            <img class="bg-decoration" src="img/vision.png" alt="vision">
+            <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
+        
         </main> 
+        <main >
+            <div class="app__banner">
+                <img src="img/Avengers.png" alt="Avengers">
+                <div class="app__banner-text">
+                    New comics every week!<br>
+                    Stay tuned!
+                </div>
+                <img src="img/Avengers_logo.png" alt="Avengers logo">
+            </div>
+            <comics-list />
+        </main>  
+        
     </div>
 </template>
 
 <script>
+import {getAllCharacters, getOneCharacters} from "@/api/MarvelApi";
+import RamdonCharact from '@/components/RandomCharact.vue';
+import CharList from '@/components/CharList.vue';
+import CharInfo from '@/components/CharInfo.vue';
+import ComicsList from '@/components/ComicsList.vue';
 
-export default {
+export default {  
   name: 'App',
   components: {
+   RamdonCharact,
+   CharList,
+   CharInfo,
+   ComicsList,
+  },
 
+  date() {
+    return {
+      cardsCharacters: [],
+      randomChar: [],
+      showCharacters: true,
+      showComics: true,
+    }
+  },
+
+  created() {
+    const cardsChar = getAllCharacters();
+    if (cardsChar) {
+       this.cardsCharacters = cardsChar;
+    }
+    // console.log(`ddddddddddd`)
+    // console.log(this.cardsCharacters);
+
+    const charOne = getOneCharacters(1011355);
+    if (charOne) {
+       this.randomChar = charOne;
+    }
+    // console.log(`CCCCCCCCCC`)
+    // console.log(this.randomChar);
   }
 }
 </script>
 
 <style>
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px; */
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap");
-* {
-    font-family: "Roboto Condensed", sans-serif;
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-}
-ul, li, dl {
-    list-style-type: none;
-    margin: 0;
-    padding: 0
-}
-h1, h2, h3, h4, h5, h6 {
-    margin: 0
-}
-a {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block
-}
-a:hover {
-    text-decoration: none;
-    color: inherit
-}
-p {
-    margin: 0;
-    padding: 0
-}
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0
-}
-
-.app {
-    width: 1100px;
-    margin: 0 auto;
-    padding: 50px 0 50px 0;
-    position: relative
-}
-.app__header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between
-}
-.app__title {
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 37px
-}
-.app__title span {
-    color: #9F0013
-}
-.app__menu ul {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 32px
-}
-.app__menu ul li {
-    margin: 0 8px
-}
-.app__menu ul li a:hover {
-    color: #9F0013
-}
-.app__banner {
-    width: 100%;
-    background-color: #232222;
-    height: 100px;
-    padding: 0 25px 0 45px;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 152px auto 133px;
-    grid-template-columns: 152px auto 133px
-}
-.app__banner-text {
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 32px;
-    color: #FFFFFF;
-    padding-left: 83px;
-    padding-top: 18px
-}
-.app .bg-decoration {
-    position: absolute;
-    right: -174px;
-    bottom: -70px;
-    z-index: -1
-}
-
-main {
-    margin-top: 50px;
-    position: relative
-}
-.randomchar {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (50%)[2]; 
-    grid-template-columns: repeat(2, 50%);
-    -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
-} 
-.randomchar__block {
-    padding: 40px 35px;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 180px auto;
-    grid-template-columns: 180px auto;
-    -webkit-column-gap: 30px;
-    column-gap: 30px
-}
-.randomchar__img {
-    width: 180px;
-    height: 180px;
-    -o-object-fit: cover;
-    object-fit: cover
-}
-.randomchar__info {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-rows: minmax(29px, auto) 90px 38px;
-    grid-template-rows: minmax(29px, auto) 90px 38px;
-    row-gap: 10px;
-    padding-top: 3px
-}
-.randomchar__name {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 29px;
-    text-transform: uppercase
-}
-.randomchar__descr {
-    font-size: 14px;
-    line-height: 18px
-}
-.randomchar__btns a:nth-child(1) {
-    margin-right: 30px
-}
-.randomchar__static {
-    padding: 40px 35px;
-    background-color: #232222;
-    position: relative
-}
-.randomchar__static button {
-    margin-top: 13px
-}
-.randomchar__title {
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: -0.045em;
-    color: #FFFFFF
-}
-.randomchar__title:nth-child(2) {
-    margin-top: 33px
-}
-.randomchar__decoration {
-    position: absolute;
-    bottom: 14px;
-    right: -37px
-}
-
-.char__content {
-    margin-top: 50px;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 650px 425px;
-    grid-template-columns: 650px 425px;
-    -webkit-column-gap: 25px;
-    column-gap: 25px;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: start
-}
-.char__grid {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (200px)[3]; 
-    grid-template-columns: repeat(3, 200px);
-    -webkit-column-gap: 25px;
-    column-gap: 25px;
-    row-gap: 30px
-}
-.char__item {
-    width: 200px;
-    height: 318px;
-    background-color: #232222;
-    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-    padding: 15px;
-    cursor: pointer;
-    -webkit-transition: 0.3s -webkit-transform;
-    transition: 0.3s -webkit-transform;
-    transition: 0.3s transform;
-    transition: 0.3s transform, 0.3s -webkit-transform
-}
-.char__item img {
-    width: 200px;
-    height: 200px;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -webkit-transform: translate(-15px, -15px);
-    transform: translate(-15px, -15px)
-}
-.char__item_selected {
-    -webkit-box-shadow: 0 5px 20px #9F0013;
-    box-shadow: 0 5px 20px #9F0013;
-    -webkit-transform: translateY(-8px);
-    transform: translateY(-8px)
-}
-.char__name {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 29px;
-    text-transform: uppercase;
-    color: #fff
-}
-.char__info {
-    padding: 25px;
-    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-    position: relative;
-    z-index: 5;
-    background-color: #fff
-}
-.char__info-name {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 29px;
-    text-transform: uppercase
-}
-.char__info .skeleton {
-    margin-top: 30px
-}
-.char__basics {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 150px auto;
-    grid-template-columns: 150px auto;
-    -webkit-column-gap: 25px;
-    column-gap: 25px
-}
-.char__basics img {
-    width: 150px;
-    height: 150px;
-    -o-object-fit: cover;
-    object-fit: cover
-}
-.char__btns {
-    margin-top: 35px
-}
-.char__btns a:nth-child(2) {
-    margin-top: 10px
-}
-.char__descr {
-    margin-top: 15px;
-    font-size: 14px;
-    line-height: 18px
-}
-.char__comics {
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    margin-top: 10px
-}
-.char__comics-list {
-    position: relative;
-    margin-top: 10px
-}
-.char__comics-item {
-    width: 100%;
-    padding: 0px 10px;
-    line-height: 25px;
-    -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 10px
-}
-.char__select {
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center
-}
-
-.skeleton__header {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 40px auto;
-    grid-template-columns: 40px auto;
-    -webkit-column-gap: 10px;
-    column-gap: 10px;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center
-}
-.skeleton__circle {
-    width: 40px;
-    height: 40px;
-    background-color: #C4C4C4;
-    border-radius: 100%
-}
-.skeleton__mini {
-    width: 100%;
-    height: 16px;
-    background-color: #C4C4C4
-}
-.skeleton__block {
-    height: 35px;
-    width: 100%;
-    background-color: #C4C4C4;
-    margin-top: 15px
-}
-.pulse {
-    -webkit-animation: pulse 1.5s ease-in-out .5s infinite;
-    animation: pulse 1.5s ease-in-out .5s infinite
-}
-@-webkit-keyframes pulse {
-    0% {
-        opacity: 1
-    }
-    50% {
-        opacity: .4
-    }
-    100% {
-        opacity: 1
-    }
-}
-@keyframes pulse {
-    0% {
-        opacity: 1
-    }
-    50% {
-        opacity: .4
-    }
-    100% {
-        opacity: 1
-    }
-}
-.button {
-    min-width: 101px;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 14px;
-    -webkit-transition: 0.3s -webkit-transform;
-    transition: 0.3s -webkit-transform;
-    transition: 0.3s transform;
-    transition: 0.3s transform, 0.3s -webkit-transform;
-    border: none;
-    background-color: transparent;
-    cursor: pointer
-}
-.button__long {
-    display: block;
-    width: 170px;
-    margin: 45px auto 0 auto
-}
-.button .inner {
-    position: relative;
-    background-color: #9F0013;
-    line-height: 18px;
-    padding: 0 18px;
-    -webkit-transition: none;
-    transition: none
-}
-.button .inner::before {
-    border-color: #9F0013 transparent;
-    border-style: solid;
-    border-width: 0 0 10px 10px;
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    top: -10px;
-    -webkit-transition: none;
-    transition: none
-}
-.button .inner::after {
-    border-color: #9F0013 transparent;
-    border-style: solid;
-    border-width: 0 0 10px 10px;
-    content: "";
-    display: block;
-    position: absolute;
-    right: 0;
-    bottom: -10px;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    -webkit-transition: none;
-    transition: none
-}
-.button__main:hover, .button__secondary:hover {
-    color: #fff
-}
-.button__secondary .inner {
-    background-color: #5C5C5C
-}
-.button__secondary .inner::before {
-    border-color: #5C5C5C transparent;
-    -webkit-transition: none;
-    transition: none
-}
-.button__secondary .inner::after {
-    border-color: #5C5C5C transparent;
-    -webkit-transition: none;
-    transition: none
-}
-.button::before {
-    content: '';
-    display: block;
-    height: 10px;
-    margin-left: 10px;
-    -webkit-transition: none;
-    transition: none
-}
-.button::after {
-    content: '';
-    display: block;
-    height: 10px;
-    margin-right: 10px;
-    -webkit-transition: none;
-    transition: none
-}
-.button.button__main::before, .button.button__main::after {
-    background-color: #9F0013
-}
-.button.button__secondary::before, .button.button__secondary::after {
-    background-color: #5C5C5C
-}
-.button:hover {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px)
+ 
 }
 
 </style>
