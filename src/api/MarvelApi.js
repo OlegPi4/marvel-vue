@@ -4,7 +4,7 @@ export const APIKEY = 'apikey=dd380dc0702d512034508b86c60f75f0';
 export const BASEOFFSET = 210; 
 
 
-export const getAllCharacters = async (offset = BASEOFFSET) => {
+export const getAllCharacters = async (offset) => {
 
    try {
       let res = await fetch(`${APIBASE}characters?limit=9&offset=${offset}&${APIKEY}`);

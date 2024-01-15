@@ -65,7 +65,7 @@ export default {
 
   data() {
     return {
-      cardsCharacters: [],
+    
       showCharacters: true,
       showComics: false,
     }
@@ -73,25 +73,12 @@ export default {
 
   created() {
 
-    getAllCharacters().then(responce => {
-        this.cardsCharacters = responce;
-    })
-   
-    // const startRandomCharact = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-    // getOneCharacters(startRandomCharact).then(resp => {
-    //     this.randomChar = resp;
-    // }) 
-    
-   
-  
   },
  
 }
 </script>
 
 <style>
-#app {
- 
-}
+
 
 </style>

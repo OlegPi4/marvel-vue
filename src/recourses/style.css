@@ -118,9 +118,21 @@ main {
 .randomchar__img {
     width: 180px;
     height: 180px;
-    -o-object-fit: cover;
-    object-fit: cover
+  
 }
+
+.randomchar__img-cover {
+    -o-object-fit: cover;
+    object-fit: cover 
+}
+
+.randomchar__img-contain {
+    -o-object-fit: contain;
+    object-fit: fill;
+    min-height: 180px;
+}
+
+
 .randomchar__info {
     display: -ms-grid;
     display: grid;

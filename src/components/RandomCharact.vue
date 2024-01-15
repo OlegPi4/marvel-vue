@@ -1,7 +1,15 @@
 <template>
     <div class="randomchar">
          <div v-if="!loading && !error" class="randomchar__block">
-            <img :src="urlImg" alt="Random character" class="randomchar__img">
+            <img 
+               :src="urlImg" 
+               alt="Random character" 
+               class="randomchar__img" 
+               :class="{
+                  'randomchar__img-contain': imgObjectFit == true,
+                  'randomchar__img-cover': imgObjectFit == false,
+                  }"
+            >
             <div class="randomchar__info">
                <p class="randomchar__name">{{ name }}</p> 
                <p class="randomchar__descr">
@@ -31,7 +39,7 @@
             <p class="randomchar__title">
                Or choose another one
             </p>
-            <button class="button button__main">
+            <button @click.stop="getRandomChar" class="button button__main">
                <div class="inner">try it</div>
             </button>
             <img src="../img/mjolnir.png" alt="mjolnir" class="randomchar__decoration">
@@ -57,11 +65,13 @@ export default {
          loading: true,
          randomChar: null,
          error: false,
+         imgObjectFit: false,
       }
    },
 
    created() {
-      this.getRandomChar()
+      this.getRandomChar();
+      
    },
 
    computed: {
@@ -78,22 +88,27 @@ export default {
          return this.randomChar[0].wiki;
       },
       description() {
-         let des = (this.randomChar[0].description) ? this.singleCharacter[0].description : "There is no character description." ;
+         
+         let des = (this.randomChar[0].description) ? this.randomChar[0].description : "There is no character description." ;
          if (des.length > 200) {
             des = des.slice(0, 200) + '...'
          }
          return des;
-      }
+      },
+      
    },
 
    methods: {
+     
       onError() {
          this.loading = false;
          this.error = true;
       },
 
       getRandomChar() {
+         
          const startRandomCharact = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+         this.loading = true;
          getOneCharacters(startRandomCharact)
             .then( resp => this.randomChar = resp)
             .catch(this.onError); 
@@ -105,7 +120,14 @@ export default {
          if (this.randomChar.length > 0) {
             this.loading = false;
          }
-      }
+        
+         if( 'image_not_available.jpg' === this.randomChar[0].thumbnail.slice(-23)) {
+            this.imgObjectFit = true;
+         } else {
+            this.imgObjectFit = false;
+         }
+         
+      },
    }
 }
 </script>
