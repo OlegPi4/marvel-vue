@@ -14,12 +14,15 @@
                     <li><a href="#">Comics</a></li>
                 </ul>
             </nav>
-        
+                     
+            
         </header>
-
+           
         <main  v-if="showCharacters">
             
-            <ramdon-charact /> 
+           <ramdon-charact 
+                
+            /> 
             <div class="char__content">
                 
                 <char-list />
@@ -30,7 +33,7 @@
         
         </main> 
         <main  v-if="showComics" >
-            <div class="app__banner">
+            <div  class="app__banner">
                 <img src="img/Avengers.png" alt="Avengers">
                 <div class="app__banner-text">
                     New comics every week!<br>
@@ -60,30 +63,29 @@ export default {
    ComicsList,
   },
 
-  date() {
+  data() {
     return {
       cardsCharacters: [],
-      randomChar: [],
       showCharacters: true,
-      showComics: true,
+      showComics: false,
     }
   },
 
   created() {
-    const cardsChar = getAllCharacters();
-    if (cardsChar) {
-       this.cardsCharacters = cardsChar;
-    }
-    // console.log(`ddddddddddd`)
-    // console.log(this.cardsCharacters);
 
-    const charOne = getOneCharacters(1011355);
-    if (charOne) {
-       this.randomChar = charOne;
-    }
-    // console.log(`CCCCCCCCCC`)
-    // console.log(this.randomChar);
-  }
+    getAllCharacters().then(responce => {
+        this.cardsCharacters = responce;
+    })
+   
+    // const startRandomCharact = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+    // getOneCharacters(startRandomCharact).then(resp => {
+    //     this.randomChar = resp;
+    // }) 
+    
+   
+  
+  },
+ 
 }
 </script>
 
