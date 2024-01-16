@@ -1,74 +1,114 @@
 <template>
    <div class="char__info">
-      <div class="char__basics">
-         <img src="../img/thor.jpeg" alt="abyss">
-         <div>
-               <div class="char__info-name">thor</div>
-               <div class="char__btns">
-                  <a href="#" class="button button__main">
-                     <div class="inner">homepage</div>
-                  </a>
-                  <a href="#" class="button button__secondary">
-                     <div class="inner">Wiki</div>
-                  </a>
-               </div>
-         </div>
-      </div>
-      <div class="char__descr">
-         In Norse mythology, Loki is a god or jötunn (or both). Loki is the son of Fárbauti and Laufey, and the brother of Helblindi and Býleistr. By the jötunn Angrboða, Loki is the father of Hel, the wolf Fenrir, and the world serpent Jörmungandr. By Sigyn, Loki is the father of Nari and/or Narfi and with the stallion Svaðilfari as the father, Loki gave birth—in the form of a mare—to the eight-legged horse Sleipnir. In addition, Loki is referred to as the father of Váli in the Prose Edda.
-      </div>
-      <div class="char__comics">Comics:</div>
-      <ul class="char__comics-list">
-         <li class="char__comics-item">
-               All-Winners Squad: Band of Heroes (2011) #3
-         </li>
-         <li class="char__comics-item">
-               Alpha Flight (1983) #50
-         </li>
-         <li class="char__comics-item">
-               Amazing Spider-Man (1999) #503
-         </li>
-         <li class="char__comics-item">
-               Amazing Spider-Man (1999) #504
-         </li>
-         <li class="char__comics-item">
-               AMAZING SPIDER-MAN VOL. 7: BOOK OF EZEKIEL TPB (Trade Paperback)
-         </li>
-         <li class="char__comics-item">
-               Amazing-Spider-Man: Worldwide Vol. 8 (Trade Paperback)
-         </li>
-         <li class="char__comics-item">
-               Asgardians Of The Galaxy Vol. 2: War Of The Realms (Trade Paperback)
-         </li>
-         <li class="char__comics-item">
-               Vengeance (2011) #4
-         </li>
-         <li class="char__comics-item">
-               Avengers (1963) #1
-         </li>
-         <li class="char__comics-item">
-               Avengers (1996) #1
-         </li>
-      </ul>
-      <p class="char__select">Please select a character to see information</p>
-      <div class="skeleton">
-         <div class="pulse skeleton__header">
-               <div class="pulse skeleton__circle"></div>
-               <div class="pulse skeleton__mini"></div>
-         </div>
-         <div class="pulse skeleton__block"></div>
-         <div class="pulse skeleton__block"></div>
-         <div class="pulse skeleton__block"></div>
-      </div>
+      <template  v-if="!skeleton"> 
+            <div class="char__basics">
+                  <img :src="char.thumbnail"  :alt="char.name" style="object-fit: fill;">
+                  <div>
+                        <div class="char__info-name">{{ char.name }}</div>
+                        <div class="char__btns">
+                        <a :href="char.homepage" class="button button__main">
+                              <div class="inner">homepage</div>
+                        </a>
+                        <a :href="char.wiki" class="button button__secondary">
+                              <div class="inner">Wiki</div>
+                        </a>
+                        </div>
+                  </div>
+            </div>
+            <div class="char__descr">
+                 {{  descript  }}
+            </div>
+            <div class="char__comics">Comics: <span v-if="char.comics.length === 0" >no comics</span></div> 
+            <ul class="char__comics-list" style="max-height: 368px; overflow: hidden; overflow-y: scroll;">
+                  <li  v-for="item in char.comics"
+                  :key="item.id"
+                  class="char__comics-item">
+                       <a href="item.resourseURL" class="comics__name">{{ item.name }}</a> 
+                  </li>
+
+            </ul>
+            <!-- <p class="char__select" style="padding-top: 10px;">Please select a character to see information</p> -->
+           
+      </template>
+      <div v-if="skeleton" class="skeleton">
+                  <div class="pulse skeleton__header">
+                        <div class="pulse skeleton__circle"></div>
+                        <div class="pulse skeleton__mini"></div>
+                  </div>
+                  <div class="pulse skeleton__block"></div>
+                  <div class="pulse skeleton__block"></div>
+                  <div class="pulse skeleton__block"></div>
+       </div>  
+      
    </div>
 </template>
 
 <script>
+
 export default {
+    name: 'CharInfo',
+    
+    components: {
+
+    },
+
+    props: {
+        selChar: {
+            type: null,
+            required: false,
+        }
+    },
+
+    data() {
+      return {
+          
+          character: null, 
+          skeleton: true,
+          char: {},
+      }
+    },
+
+    created () {
+      
+      const char = JSON.parse(localStorage.getItem('marvel-selectChar'));
+      this.char = char;
+    },
+
+    computed: {
+        descript() {
+            let des = (this.char.description) ? this.char.description : "There is no character description." ;
+            return des;
+        }
+    },
+
+    methods: {
+     
+    },
+
+    watch: {
+      selChar() {
+          if(this.selChar) {
+              this.skeleton = false;
+              this.char = this.selChar
+              
+              localStorage.setItem('marvel-selectChar', JSON.stringify(this.selChar)
+              
+              );
+          }; 
+      },
+      char() {
+            if(this.char) {
+               this.skeleton = false;
+            }
+      }
+ 
+    }
 
 }
 </script>
 
 <style>
-
+  .comics__name:hover {
+      color: blueviolet;
+  }
 </style>

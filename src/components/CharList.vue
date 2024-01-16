@@ -5,28 +5,39 @@
             <li v-for="card in cardsCharacters"
             :key="card.thumbnail"
             class="char__item "
+            @click="selectChar(card)"
             @mouseover="pointMouse(card.id)"
             @mouseout="clearPointMouse()"
             :class="{
                 'char__item_selected': currentID == card.id,  
             }"
             >
-                  <img :src=card.thumbnail alt="image-character" >
+                  <img :src=card.thumbnail alt="image-character" style="object-fit: fill;" >
                   <div class="char__name">{{ card.name }}</div>
             </li>
          </ul>
          <spiner-process  v-if="loading" />
          <div class="buttons">
+            
+            <button
+                @click="loadStart"
+                class="button button__main button__long"
+                :style=" offset< 10 ? 'display: none;' : '' "
+                >
+                <div class="inner">to the begining</div>
+            </button>
+            <button
+                @click="loadPrev"
+                class="button button__main button__long"
+                :style=" offset< 10 ? 'display: none;' : '' "
+                >
+                <div class="inner">load prev</div>
+            </button>
             <button
                 @click="loadNext"
                 class="button button__main button__long">
                 <div class="inner">load next</div>
             </button>  
-            <button
-                @click="LoadPrev"
-                class="button button__main button__long">
-                <div class="inner">load prev</div>
-         </button>
          
          </div>
          
@@ -53,8 +64,17 @@ export default {
             cardsCharacters: [],  
             currentID: null,   
             loading: true,
-            offset: 210,
+            offset: 1,
       }
+   },
+
+   emits: {
+      'select-char': {
+         type: Object,
+         require: false,
+
+      }
+
    },
 
    created() {
@@ -75,11 +95,15 @@ export default {
           this.currentID = null;
       },
 
+      loadStart() {
+         this.offset = 1;
+         this.getCharact(this.offset);  
+      },
       loadNext() {
           this.offset = +this.offset + 9;
           this.getCharact(this.offset);  
       },
-      LoadPrev() {
+      loadPrev() {
           this.offset = +this.offset - 9;
           this.getCharact(this.offset);
       },
@@ -89,7 +113,10 @@ export default {
              this.cardsCharacters = responce;
              localStorage.setItem('marvel-offset', this.offset)
           })  
-      }
+      },
+      selectChar(card) {
+         this.$emit('select-char', card)
+      },
 
    },
    watch: {
@@ -97,7 +124,8 @@ export default {
           if(this.cardsCharacters.length > 0) {
             this.loading = false;
           }
-      }
+      },
+     
    }
   
 }
@@ -108,4 +136,5 @@ export default {
    .buttons {
       display: flex;
    }
+  
 </style>

@@ -88,7 +88,6 @@ export default {
          return this.randomChar[0].wiki;
       },
       description() {
-         
          let des = (this.randomChar[0].description) ? this.randomChar[0].description : "There is no character description." ;
          if (des.length > 200) {
             des = des.slice(0, 200) + '...'
@@ -119,6 +118,7 @@ export default {
       randomChar() {
          if (this.randomChar.length > 0) {
             this.loading = false;
+            this.error = false;
          }
         
          if( 'image_not_available.jpg' === this.randomChar[0].thumbnail.slice(-23)) {

@@ -25,9 +25,9 @@
             /> 
             <div class="char__content">
                 
-                <char-list />
+                <char-list @select-char="selectChar"/>
                 
-                <char-info />
+                <char-info v-bind:selChar="selectedChar"/>
             </div>
             <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
         
@@ -65,16 +65,27 @@ export default {
 
   data() {
     return {
-    
       showCharacters: true,
       showComics: false,
+      selectedChar: null,
     }
   },
 
   created() {
 
   },
- 
+
+  methods: {
+    selectChar(ix) {
+        this.selectedChar = ix;
+    }
+  },
+
+  watch: {
+    selectedChar() {
+    
+    }
+  }
 }
 </script>
 
