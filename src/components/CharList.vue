@@ -7,10 +7,13 @@
             class="char__item "
             @click="selectChar(card)"
             @mouseover="pointMouse(card.id)"
+            @touchsratr ="pointMouse(card.id)"
             @mouseout="clearPointMouse()"
+           
             :class="{
                 'char__item_selected': currentID == card.id,  
             }"
+            :tabindex = "1 + cardsCharacters.indexOf(card)"
             >
                   <img :src=card.thumbnail alt="image-character" style="object-fit: fill;" >
                   <div class="char__name">{{ card.name }}</div>
@@ -35,7 +38,8 @@
             </button>
             <button
                 @click="loadNext"
-                class="button button__main button__long">
+                class="button button__main button__long"
+                :style=" offset > 1500 ? 'display: none;' : '' ">
                 <div class="inner">load next</div>
             </button>  
          
@@ -48,6 +52,7 @@
 
 import {getAllCharacters} from "@/api/MarvelApi";
 import SpinerProcess from './SpinerProcess.vue';
+
 
 export default {
 
