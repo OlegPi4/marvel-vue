@@ -1,15 +1,16 @@
 <template>
    <div class="char__list">
-         <ul v-if="!loading" class="char__grid">
+         <ul v-if="!loading && !error" class="char__grid">
             
             <li v-for="card in cardsCharacters"
             :key="card.thumbnail"
             class="char__item "
             @click="selectChar(card)"
             @mouseover="pointMouse(card.id)"
-            @touchsratr ="pointMouse(card.id)"
+            @t ="pointMouse(card.id)"
             @mouseout="clearPointMouse()"
-           
+            @touchend="clearPointMouse()"
+            
             :class="{
                 'char__item_selected': currentID == card.id,  
             }"
@@ -20,6 +21,7 @@
             </li>
          </ul>
          <spiner-process  v-if="loading" />
+         <error-message v-if="error" />
          <div class="buttons">
             
             <button
@@ -52,7 +54,7 @@
 
 import {getAllCharacters} from "@/api/MarvelApi";
 import SpinerProcess from './SpinerProcess.vue';
-
+import ErrorMessage from './ErrorMessage.vue';
 
 export default {
 
@@ -60,6 +62,7 @@ export default {
    
    components: {
       SpinerProcess,
+      ErrorMessage,
    },
 
    
@@ -70,6 +73,7 @@ export default {
             currentID: null,   
             loading: true,
             offset: 1,
+            error:false,
       }
    },
 
@@ -93,6 +97,11 @@ export default {
    },
 
    methods: {
+      onError() {
+         this.loading = false;
+         this.error = true;
+      },
+
       pointMouse(ix) {
           this.currentID = ix;
       },
@@ -117,13 +126,16 @@ export default {
           getAllCharacters(offset).then(responce => {
              this.cardsCharacters = responce;
              localStorage.setItem('marvel-offset', this.offset)
-          })  
-      },
+          }).catch( () => this.onError);
+            
+      },  
+      
       selectChar(card) {
          this.$emit('select-char', card)
       },
-
    },
+   
+
    watch: {
       cardsCharacters() {
           if(this.cardsCharacters.length > 0) {

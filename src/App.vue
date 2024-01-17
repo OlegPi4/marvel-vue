@@ -9,37 +9,28 @@
             </h1>
             <nav class="app__menu">
                 <ul>
-                    <li><a href="#">Characters</a></li>
+                    <li><a @click="changePageCaract" href="#">Characters</a></li>
                     /
-                    <li><a href="#">Comics</a></li>
+                    <li><a @click="changePageComics" href="#">Comics</a></li>
                 </ul>
             </nav>
-                     
-            
         </header>
-           
         <main  v-if="showCharacters">
-            
-           <ramdon-charact 
-                
-            /> 
+            <ramdon-charact /> 
             <div class="char__content">
-                
                 <char-list @select-char="selectChar"/>
-                
                 <char-info v-bind:selChar="selectedChar"/>
             </div>
             <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
-        
         </main> 
         <main  v-if="showComics" >
             <div  class="app__banner">
-                <img src="img/Avengers.png" alt="Avengers">
+                <img src="../src/img/Avengers.png" alt="Avengers">
                 <div class="app__banner-text">
                     New comics every week!<br>
                     Stay tuned!
                 </div>
-                <img src="img/Avengers_logo.png" alt="Avengers logo">
+                <img src="../src/img/Avengers_logo.png" alt="Avengers logo">
             </div>
             <comics-list />
         </main>  
@@ -48,7 +39,7 @@
 </template>
 
 <script>
-import {getAllCharacters, getOneCharacters} from "@/api/MarvelApi";
+
 import RamdonCharact from '@/components/RandomCharact.vue';
 import CharList from '@/components/CharList.vue';
 import CharInfo from '@/components/CharInfo.vue';
@@ -76,9 +67,21 @@ export default {
   },
 
   methods: {
+
     selectChar(ix) {
         this.selectedChar = ix;
+    },
+
+    changePageCaract() {
+        this.showCharacters = true;  
+        this.showComics = false;
+    },
+
+    changePageComics() {
+        this.showCharacters = false;  
+        this.showComics = true;
     }
+
   },
 
   watch: {

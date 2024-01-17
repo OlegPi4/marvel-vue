@@ -10,7 +10,7 @@ export const getAllCharacters = async (offset) => {
       let res = await fetch(`${APIBASE}characters?limit=9&offset=${offset}&${APIKEY}`);
       res = await res.json();
       res = res.data.results;
-      return res.map(item => dataConvertion(item));       
+      return res.map(item => dataConvertionChar(item));       
    } catch (error) {
       console.error(`Download error: ${error.message}`)
    }
@@ -24,11 +24,11 @@ export const getOneCharacters = async (id) => {
    res = await res.json();
    res = res.data.results;
    
-   return res.map(item => dataConvertion(item));
+   return res.map(item => dataConvertionChar(item));
    
 };  
 
-function dataConvertion(item) {
+function dataConvertionChar(item) {
    return {
       id: item.id,
       name: item.name,
@@ -38,5 +38,28 @@ function dataConvertion(item) {
       wiki: item.urls[1].url,
       comics: item.comics.items,
    }
-}
+};
 
+export const getComicses = async (offset) => {
+
+   try {
+      let res = await fetch(`${APIBASE}comics?orderBy=title&limit=8&offset=${offset}&${APIKEY}`);
+      res = await res.json();
+      res = res.data.results;
+      return res.map(item => dataConvertionComics(item));       
+   } catch (error) {
+      console.error(`Download error: ${error.message}`)
+   }
+}; 
+
+function dataConvertionComics(item) {
+   return {
+      id: item.id,
+      digitalId: item.digitalId,
+      title: item.title,
+      description: item.description,
+      thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
+      
+   }
+}
+  
