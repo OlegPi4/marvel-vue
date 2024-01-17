@@ -2,13 +2,15 @@
 
 
 #### Пробую ставити touch.. в CharList.vue
- <li v-for="card in cardsCharacters"        
+```
+      <li v-for="card in cardsCharacters"        
             :key="card.thumbnail"  
             class="char__item "  
             @click="selectChar(card)"  
             @mouseover="pointMouse(card.id)"  
-            @touchsratr ="pointMouse(card.id)"    !!!  не реагує
+            @touchstart ="pointMouse(card.id)"    !!!  не реагує
             @mouseout="clearPointMouse()"  
+```            
 ## Project setup
 ```
 npm install
