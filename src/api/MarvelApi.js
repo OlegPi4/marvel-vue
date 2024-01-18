@@ -67,7 +67,7 @@ function dataConvertionComics(item) {
 export const getCharacterComics = async (id) => {
 
    try {
-      let res = await fetch(`${APIBASE}characters/${id}/comics?hasDigitalIssue=true&orderBy=title&${APIKEY}`);
+      let res = await fetch(`${APIBASE}characters/${id}/comics?hasDigitalIssue=true&limit=80&orderBy=title&${APIKEY}`);
       res = await res.json();
       res = res.data.results;
           

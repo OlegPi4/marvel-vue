@@ -19,7 +19,8 @@
             <ramdon-charact /> 
             <div class="char__content">
                 <char-list @select-char="selectChar"/>
-                <char-info v-bind:selChar="selectedChar"/>
+                <char-info v-bind:selChar="selectedChar"
+                @select-comics="changePageComics"/>
             </div>
             <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
         </main> 
@@ -63,7 +64,9 @@ export default {
   },
 
   created() {
-
+    this.showCharacters = JSON.parse(localStorage.getItem('showCharacters'));
+    this.showComics = JSON.parse(localStorage.getItem('showComics'));
+    console.log(`${this.showCharacters} -- ${this.showComics}`);
   },
 
   methods: {
@@ -85,8 +88,15 @@ export default {
   },
 
   watch: {
+    showCharacters() {
+        localStorage.setItem('showCharacters', JSON.stringify(this.showCharacters));
+    },
+
+    showComics() {
+        localStorage.setItem('showComics', JSON.stringify(this.showComics));
+    },
+
     selectedChar() {
-    
     }
   }
 }

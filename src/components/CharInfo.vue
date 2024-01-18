@@ -93,7 +93,7 @@ export default {
       
       this.char = JSON.parse(localStorage.getItem('marvel-selectChar'));
       this.comics = JSON.parse(localStorage.getItem('marvel-selected-comics'));
-      
+         
     },
 
     computed: {
@@ -112,8 +112,8 @@ export default {
           }).catch( () => this.onError);
       },
       loadComicsPage() {
-        const dataComics = [this.char, ...this.comics];
-        localStorage.setItem('marvel-selected-comics', JSON.stringify(dataComics));
+        
+        localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
         this.$emit('select-comics');
       }
     },
