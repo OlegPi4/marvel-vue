@@ -59,7 +59,32 @@ function dataConvertionComics(item) {
       title: item.title,
       description: item.description,
       thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
+      price: item.prices[0].price,
       
    }
 }
   
+export const getCharacterComics = async (id) => {
+
+   try {
+      let res = await fetch(`${APIBASE}characters/${id}/comics?hasDigitalIssue=true&orderBy=title&${APIKEY}`);
+      res = await res.json();
+      res = res.data.results;
+          
+      return res.map(item => dataCharComics(item));       
+   } catch (error) {
+      console.error(`Download error: ${error.message}`)
+   }
+}; 
+
+function dataCharComics(item) {
+   return {
+      id: item.id,
+      digitalId: item.digitalId,
+      title: item.title,
+      description: item.description,
+      thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
+      text: item.textObjects,
+      url: item.urls[0].url,
+   }
+}

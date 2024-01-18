@@ -18,17 +18,23 @@
             <div class="char__descr">
                  {{  descript  }}
             </div>
-            <div class="char__comics">Comics: <span v-if="char.comics.length === 0" >no comics</span></div> 
+            <div class="char__comics">Comics: <span v-if="comics.length === 0" >no comics</span></div> 
             <ul class="char__comics-list" style="max-height: 368px; overflow: hidden; overflow-y: scroll;">
-                  <li  v-for="item in char.comics"
+                  <li  v-for="item in comics"
                   :key="item.id"
                   class="char__comics-item">
-                       <a href="item.resourseURL" class="comics__name">{{ item.name }}</a> 
+                       <a :href=item.url class="comics__name">{{ item.title }}</a> 
                   </li>
 
             </ul>
-            <!-- <p class="char__select" style="padding-top: 10px;">Please select a character to see information</p> -->
-           
+            <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
+            <div class="button__comics">
+                <a href="#" class="button button__main"
+                @click="loadComicsPage">
+                <div class="inner" >comics</div>
+            </a>
+            </div >
+            
       </template>
       <div v-if="skeleton" class="skeleton">
                   <div class="pulse skeleton__header">
@@ -44,14 +50,18 @@
 </template>
 
 <script>
+import {getCharacterComics} from "@/api/MarvelApi";
+import SpinerProcess from './SpinerProcess.vue';
+import ErrorMessage from './ErrorMessage.vue';
 
 export default {
     name: 'CharInfo',
     
     components: {
-
+      SpinerProcess,
+      ErrorMessage,
     },
-
+    
     props: {
         selChar: {
             type: null,
@@ -64,14 +74,26 @@ export default {
           
           character: null, 
           skeleton: true,
+          error: false,
+          loading: false,
           char: {},
+          comics: {},
       }
     },
 
+    emits: {
+      'select-comics': {
+         type: null,
+         require: false,
+
+      }
+
+   },
     created () {
       
-      const char = JSON.parse(localStorage.getItem('marvel-selectChar'));
-      this.char = char;
+      this.char = JSON.parse(localStorage.getItem('marvel-selectChar'));
+      this.comics = JSON.parse(localStorage.getItem('marvel-selected-comics'));
+      
     },
 
     computed: {
@@ -82,18 +104,30 @@ export default {
     },
 
     methods: {
-     
+      getCharComics() {
+        getCharacterComics(this.selChar.id).then(responce => {
+             this.comics = responce;
+             localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
+                         
+          }).catch( () => this.onError);
+      },
+      loadComicsPage() {
+        const dataComics = [this.char, ...this.comics];
+        localStorage.setItem('marvel-selected-comics', JSON.stringify(dataComics));
+        this.$emit('select-comics');
+      }
     },
 
     watch: {
       selChar() {
           if(this.selChar) {
               this.skeleton = false;
-              this.char = this.selChar
+              this.loading = true;
+              this.char = this.selChar;
+              this.getCharComics();
+                                  
+         localStorage.setItem('marvel-selectChar', JSON.stringify(this.selChar));
               
-              localStorage.setItem('marvel-selectChar', JSON.stringify(this.selChar)
-              
-              );
           }; 
       },
       char() {
@@ -110,5 +144,9 @@ export default {
 <style>
   .comics__name:hover {
       color: blueviolet;
+  }
+  .button__comics {
+    display: flex;
+    justify-content: center;
   }
 </style>

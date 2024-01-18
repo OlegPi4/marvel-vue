@@ -1,7 +1,7 @@
 <template>
      
     <div class="comics__list">
-         <ul class="comics__grid">
+         <ul  v-if="!loading && !error"  class="comics__grid">
                <li v-for="card in cardsComics"
                :key="card.thumbnail"
                @click="selectChar(card)"
@@ -13,32 +13,34 @@
                :tabindex = "1 + cardsComics.indexOf(card)"
                class="comics__item">
                   <a href="#">
-                     <img :src=card.thumbnail alt="comic title" class="comics__item-img">
-                     <div class="comics__item-name">{{ card.title }}</div>
-                     <div class="comics__item-price">9.99$</div>
+                     <img :src=card.thumbnail alt="comic title" class="comics__item-img" style="object-fit: fill;">
+                     <div class="comics__item-name" style="padding: 0px 5px;">{{ card.title }}</div>
+                     <div class="comics__item-price" style="padding: 0px 5px;">{{ card.price }}$</div>
                   </a>
                </li>
          </ul>
+         <spiner-process  v-if="loading" />
+         <error-message v-if="error" />
          <div class="buttons">
             
             <button
                 @click="loadStart"
                 class="button button__main button__long"
-                :style=" offset< 9 ? 'display: none;' : '' "
+                :style=" offsetComics < 8 ? 'display: none;' : '' "
                 >
                 <div class="inner">to the begining</div>
             </button>
             <button
                 @click="loadPrev"
                 class="button button__main button__long"
-                :style=" offset< 9 ? 'display: none;' : '' "
+                :style=" offsetComics < 8 ? 'display: none;' : '' "
                 >
                 <div class="inner">load prev</div>
             </button>
             <button
                 @click="loadNext"
                 class="button button__main button__long"
-                :style=" offset > 58800 ? 'display: none;' : '' ">
+                :style=" offsetComics > 58800 ? 'display: none;' : '' ">
                 <div class="inner">load next</div>
             </button>  
          
@@ -66,16 +68,17 @@ export default {
    data() {
       return {
             cardsComics: [],
+            currentChar: null,
             currentComics: null,   
             loading: true,
-            offset: 1,
+            offsetComics: 0,
             error:false,
       }
    },
    created() {
-      const offset = localStorage.getItem('marvel-offset-comics');
-      this.offset = offset;
-      this.getCharact(this.offset); 
+      this.offsetComics = localStorage.getItem('marvel-offset-comics');
+
+      this.getCom(this.offsetComics); 
    },
 
    methods: {
@@ -92,22 +95,23 @@ export default {
       },
 
       loadStart() {
-         this.offset = 1;
-         this.getCharact(this.offset);  
+         this.offsetComics = 0;
+         this.getCom(this.offsetComics);  
       },
       loadNext() {
-          this.offset = +this.offset + 8;
-          this.getCharact(this.offset);  
+          this.offsetComics = +this.offsetComics + 8;
+          this.getCom(this.offsetComics);  
       },
       loadPrev() {
-          this.offset = +this.offset - 8;
-          this.getCharact(this.offset);
+          this.offsetComics = +this.offsetComics - 8;
+          this.getCom(this.offsetComics);
       },
-      getCharact(offset) {
+      getCom(offset) {
           this.loading = true; 
           getComicses(offset).then(responce => {
              this.cardsComics = responce;
-             localStorage.setItem('marvel-offset-comics', this.offset)
+             localStorage.setItem('marvel-offset-comics', offset);
+            
           }).catch( () => this.onError);
             
       },  
@@ -119,8 +123,8 @@ export default {
    
 
    watch: {
-      cardsCharacters() {
-          if(this.cardsCharacters.length > 0) {
+      cardsComics() {
+          if(this.cardsComics.length > 0) {
             this.loading = false;
           }
       },
