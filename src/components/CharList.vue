@@ -131,7 +131,7 @@ export default {
       },  
       
       selectChar(card) {
-            
+         this.$emit('select-char', card)
       },
    },
    
