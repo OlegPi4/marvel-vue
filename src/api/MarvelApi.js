@@ -1,33 +1,34 @@
+// базовая часть пути запроса
+const APIBASE = 'https://gateway.marvel.com:443/v1/public/';
+// индивидуальный ключ 
+const APIKEY = 'apikey=dd380dc0702d512034508b86c60f75f0';
+// количество карточек на странице персонажей
+const APICHARLIMIT = 9;
+// количество карточек на странице комиксов
+const APICOMICSLIMIT = 8;
 
-export const APIBASE = 'https://gateway.marvel.com:443/v1/public/';
-export const APIKEY = 'apikey=dd380dc0702d512034508b86c60f75f0';
 
-
-
-export const getAllCharacters = async (offset) => {
-
+// получение данных персонажей
+export const getCharact = async (offset, id) => {
+   
+   let url = '';
+   if (offset) {
+      url = `${APIBASE}characters?limit=${APICHARLIMIT}&offset=${offset}&${APIKEY}`;
+   } else {
+      url = `${APIBASE}characters/${id}?&${APIKEY}`; 
+   }
    try {
-      let res = await fetch(`${APIBASE}characters?limit=9&offset=${offset}&${APIKEY}`);
+      let res = await fetch(url);
       res = await res.json();
       res = res.data.results;
       return res.map(item => dataConvertionChar(item));       
    } catch (error) {
-      console.error(`Download error: ${error.message}`)
+      console.error(`Download error: ${error.message}`);
    }
    
 };   
 
-
-export const getOneCharacters = async (id) => {
-   
-   let res = await fetch(`${APIBASE}characters/${id}?&${APIKEY}`);
-   res = await res.json();
-   res = res.data.results;
-   
-   return res.map(item => dataConvertionChar(item));
-   
-};  
-
+// обработка данных персонажей
 function dataConvertionChar(item) {
    return {
       id: item.id,
@@ -40,43 +41,20 @@ function dataConvertionChar(item) {
    }
 };
 
-export const getComicses = async (offset) => {
-
-   try {
-      let res = await fetch(`${APIBASE}comics?orderBy=title&limit=8&offset=${offset}&${APIKEY}`);
-      res = await res.json();
-      res = res.data.results;
-      return res.map(item => dataConvertionComics(item));       
-   } catch (error) {
-      console.error(`Download error: ${error.message}`)
-   }
-}; 
-
-function dataConvertionComics(item) {
-   return {
-      id: item.id,
-      digitalId: item.digitalId,
-      title: item.title,
-      description: item.description,
-      thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
-      price: item.prices[0].price,
-      
-   }
-}
-  
+// получение данных комиксов  
 export const getCharacterComics = async (id) => {
 
    try {
-      let res = await fetch(`${APIBASE}characters/${id}/comics?hasDigitalIssue=true&limit=80&orderBy=title&${APIKEY}`);
+      let res = await fetch(`${APIBASE}characters/${id}/comics?hasDigitalIssue=true&limit=${APICOMICSLIMIT}0&orderBy=title&${APIKEY}`);
       res = await res.json();
       res = res.data.results;
-          
       return res.map(item => dataCharComics(item));       
    } catch (error) {
       console.error(`Download error: ${error.message}`)
    }
 }; 
 
+// обработка данных комиксов
 function dataCharComics(item) {
    return {
       id: item.id,

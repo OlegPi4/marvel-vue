@@ -49,7 +49,7 @@
 
 <script>
 
-import {getAllCharacters} from "@/api/MarvelApi";
+import {getCharact} from "@/api/MarvelApi";
 import SpinerProcess from './SpinerProcess.vue';
 import ErrorMessage from './ErrorMessage.vue';
 
@@ -113,8 +113,7 @@ export default {
       },
       getCharact(offset) {
           this.loading = true; 
-          
-          getAllCharacters(offset).then(responce => {
+          getCharact(offset, null).then(responce => {
              this.cardsCharacters = responce;
              this.loading = false;
              localStorage.setItem('marvel-offset', this.offset)
@@ -127,10 +126,6 @@ export default {
       },
    },
    
-
-   watch: {
-   
-   }
 }
 
 </script>
@@ -139,7 +134,5 @@ export default {
    .buttons {
       display: flex;
    }
-   spiner-process {
-     
-   } 
+ 
 </style>

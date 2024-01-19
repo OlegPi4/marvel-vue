@@ -48,7 +48,7 @@
 <script>
 import SpinerProcess from './SpinerProcess.vue';
 import ErrorMessage from './ErrorMessage.vue';
-import {getOneCharacters} from "@/api/MarvelApi";
+import {getCharact} from "@/api/MarvelApi";
 
 export default {
    name: 'RandomCharact',
@@ -69,7 +69,6 @@ export default {
 
    created() {
       this.getRandomChar();
-      
    },
 
    computed: {
@@ -103,12 +102,11 @@ export default {
       },
 
       getRandomChar() {
-         
          const startRandomCharact = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
          this.loading = true;
-         getOneCharacters(startRandomCharact)
-            .then( resp => this.randomChar = resp)
-            .catch(this.onError); 
+         getCharact(null, startRandomCharact)
+         .then( resp => this.randomChar = resp)
+         .catch(this.onError); 
          }
    },
 
@@ -131,6 +129,5 @@ export default {
 </script>
 
 <style>
-
 
 </style>
