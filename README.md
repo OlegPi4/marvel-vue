@@ -1,15 +1,9 @@
 # marvel
 
 
-#### Пробую ставити touch.. в CharList.vue
+#### Промежуточный результат без адаптации 
 ```
-      <li v-for="card in cardsCharacters"        
-            :key="card.thumbnail"  
-            class="char__item "  
-            @click="selectChar(card)"  
-            @mouseover="pointMouse(card.id)"  
-            @touchstart ="pointMouse(card.id)"    !!!  не реагує
-            @mouseout="clearPointMouse()"  
+    
 ```            
 ## Project setup
 ```

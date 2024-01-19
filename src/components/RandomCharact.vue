@@ -25,9 +25,7 @@
                </div>
             </div>
          </div>
-         <spiner-process
-            v-if="loading"
-            class="randomchar__block"/>
+         <spiner-process v-if="loading"  />
          <error-message
             v-if="error"
             class="randomchar__block"/>   

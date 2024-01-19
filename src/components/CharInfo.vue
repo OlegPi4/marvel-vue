@@ -19,7 +19,10 @@
                  {{  descript  }}
             </div>
             <div class="char__comics">Comics: <span v-if="comics.length === 0" >no comics</span></div> 
-            <ul class="char__comics-list" style="max-height: 368px; overflow: hidden; overflow-y: scroll;">
+            <ul 
+            v-if="comics"
+            class="char__comics-list"
+            style="max-height: 368px; overflow: hidden; overflow-y: scroll;">
                   <li  v-for="item in comics"
                   :key="item.id"
                   class="char__comics-item">
@@ -27,6 +30,8 @@
                   </li>
 
             </ul>
+            <spiner-process v-if="loading" />
+            <error-message v-if="error" />
             <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
             <div class="button__comics">
                 <a href="#" class="button button__main"
@@ -104,15 +109,25 @@ export default {
     },
 
     methods: {
-      getCharComics() {
-        getCharacterComics(this.selChar.id).then(responce => {
-             this.comics = responce;
-             localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
-                         
-          }).catch( () => this.onError);
+
+      onError() {
+         this.loading = false;
+         this.error = true;
       },
+
+      getCharComics() {
+        this.comics = {};
+        this.loading = true;
+        getCharacterComics(this.selChar.id)
+          .then(responce => {
+             this.comics = responce;
+             this.loading = false;
+             localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
+          })
+          .catch(this.onError);
+      },
+
       loadComicsPage() {
-        
         localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
         this.$emit('select-comics');
       }

@@ -11,8 +11,9 @@ export default {
 </script>
 
 <style>
-.spinner {
-   margin: 0 35%;
+.spinner  {
+   display: flex;
+   justify-content: center;
    align-self: center;
 }
 

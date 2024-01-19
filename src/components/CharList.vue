@@ -7,10 +7,7 @@
             class="char__item "
             @click="selectChar(card)"
             @mouseover="pointMouse(card.id)"
-            @t ="pointMouse(card.id)"
             @mouseout="clearPointMouse()"
-            @touchend="clearPointMouse()"
-            
             :class="{
                 'char__item_selected': currentID == card.id,  
             }"
@@ -65,8 +62,6 @@ export default {
       ErrorMessage,
    },
 
-   
-
    data() {
       return {
             cardsCharacters: [],  
@@ -81,9 +76,7 @@ export default {
       'select-char': {
          type: Object,
          require: false,
-
       }
-
    },
 
    created() {
@@ -91,9 +84,6 @@ export default {
       this.offset = offset;
       this.getCharact(this.offset); 
 
-   },
-   unmounted() {
-     
    },
 
    methods: {
@@ -123,8 +113,10 @@ export default {
       },
       getCharact(offset) {
           this.loading = true; 
+          
           getAllCharacters(offset).then(responce => {
              this.cardsCharacters = responce;
+             this.loading = false;
              localStorage.setItem('marvel-offset', this.offset)
           }).catch( () => this.onError);
             
@@ -137,14 +129,8 @@ export default {
    
 
    watch: {
-      cardsCharacters() {
-          if(this.cardsCharacters.length > 0) {
-            this.loading = false;
-          }
-      },
-     
+   
    }
-  
 }
 
 </script>
@@ -153,5 +139,7 @@ export default {
    .buttons {
       display: flex;
    }
-  
+   spiner-process {
+     
+   } 
 </style>

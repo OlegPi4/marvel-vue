@@ -4,7 +4,8 @@
          <ul  v-if="!loading && !error"  class="comics__grid">
                <li v-for="card in cardsComicsPage"
                :key="card.thumbnail"
-               @click="selectChar(card)"
+               @click="selectComic"
+               @touchstart="selectComic"
                @mouseover="pointMouse(card.id)"
                @mouseout="clearPointMouse()"
                :class="{
@@ -50,9 +51,9 @@
 
 <script>
 
-import {getComicses} from "@/api/MarvelApi";
 import SpinerProcess from './SpinerProcess.vue';
 import ErrorMessage from './ErrorMessage.vue';
+import Vue3TouchEvents from 'vue3-touch-events';
 
 export default {
 
@@ -62,8 +63,6 @@ export default {
       SpinerProcess,
       ErrorMessage,
    },
-
-   
 
    data() {
       return {
@@ -106,33 +105,19 @@ export default {
       },
 
       loadStart() {
-         // this.offsetComics = 0;
-         // this.getCom(this.offsetComics);  
          this.currentPage = 1;
-       
       },
       loadNext() {
-         //  this.offsetComics = +this.offsetComics + 8;
-         //  this.getCom(this.offsetComics);  
          this.currentPage += 1; 
-      
       },
       loadPrev() {
-         //  this.offsetComics = +this.offsetComics - 8;
-         //  this.getCom(this.offsetComics);
          this.currentPage -= 1;
       },
-      // getCom(offset) {
-      //     this.loading = true; 
-      //     getComicses(offset).then(responce => {
-      //        this.cardsComics = responce;
-      //        localStorage.setItem('marvel-offset-comics', offset);
-      //     }).catch( () => this.onError);
-      // },  
-      
-      // selectChar(card) {
-      //    this.$emit('select-char', card)
-      // },
+
+      selectComic() {
+         
+      }   
+
    },
    
    watch: {
@@ -140,7 +125,6 @@ export default {
           if(this.cardsComics.length > 0) {
             this.loading = false;
             this.maxPage = Math.ceil(this.cardsComics.length/8) ;
-            
           }
       },
    }

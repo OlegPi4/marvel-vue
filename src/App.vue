@@ -2,7 +2,7 @@
     <div class="app">
         <header class="app__header">
             <h1 class="app__title">
-                <a href="#">
+                <a href="https://www.marvel.com/">
                     <span>Marvel</span>
                     information portal
                 </a>
@@ -66,7 +66,6 @@ export default {
   created() {
     this.showCharacters = JSON.parse(localStorage.getItem('showCharacters'));
     this.showComics = JSON.parse(localStorage.getItem('showComics'));
-    console.log(`${this.showCharacters} -- ${this.showComics}`);
   },
 
   methods: {

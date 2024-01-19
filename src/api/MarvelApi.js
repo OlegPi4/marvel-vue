@@ -1,7 +1,7 @@
 
 export const APIBASE = 'https://gateway.marvel.com:443/v1/public/';
 export const APIKEY = 'apikey=dd380dc0702d512034508b86c60f75f0';
-export const BASEOFFSET = 210; 
+
 
 
 export const getAllCharacters = async (offset) => {
