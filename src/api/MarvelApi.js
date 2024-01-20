@@ -7,21 +7,24 @@ const APICHARLIMIT = 9;
 // количество карточек на странице комиксов
 const APICOMICSLIMIT = 8;
 
-
 // получение данных персонажей
-export const getCharact = async (offset, id) => {
+export const getCharact = async (offset, id, name) => {
    
    let url = '';
    if (offset) {
       url = `${APIBASE}characters?limit=${APICHARLIMIT}&offset=${offset}&${APIKEY}`;
-   } else {
+   } else if (id) {
       url = `${APIBASE}characters/${id}?&${APIKEY}`; 
+   } else if (name) {
+      url = `${APIBASE}characters?nameStartsWith=${name}&${APIKEY}`;
    }
    try {
       let res = await fetch(url);
       res = await res.json();
       res = res.data.results;
-      return res.map(item => dataConvertionChar(item));       
+      res = res.map(item => dataConvertionChar(item));
+      
+      return res;       
    } catch (error) {
       console.error(`Download error: ${error.message}`);
    }
@@ -35,9 +38,9 @@ function dataConvertionChar(item) {
       name: item.name,
       description: item.description,
       thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
-      homepage: item.urls[0].url,
-      wiki: item.urls[1].url,
-      comics: item.comics.items,
+      homepage: item.urls[0].url ? item.urls[0].url : '',
+      wiki: item.urls[1].url ? item.urls[1].url : '',
+      comics: item.comics.items ? item.comics.items : '',
    }
 };
 

@@ -51,9 +51,8 @@
 
 <script>
 
-import SpinerProcess from './SpinerProcess.vue';
-import ErrorMessage from './ErrorMessage.vue';
-import Vue3TouchEvents from 'vue3-touch-events';
+import SpinerProcess from './servis/SpinerProcess.vue';
+import ErrorMessage from './servis/ErrorMessage.vue';
 
 export default {
 

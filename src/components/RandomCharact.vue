@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import SpinerProcess from './SpinerProcess.vue';
-import ErrorMessage from './ErrorMessage.vue';
+import SpinerProcess from './servis/SpinerProcess.vue';
+import ErrorMessage from './servis/ErrorMessage.vue';
 import {getCharact} from "@/api/MarvelApi";
 
 export default {

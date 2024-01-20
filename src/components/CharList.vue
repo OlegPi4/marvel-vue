@@ -50,8 +50,8 @@
 <script>
 
 import {getCharact} from "@/api/MarvelApi";
-import SpinerProcess from './SpinerProcess.vue';
-import ErrorMessage from './ErrorMessage.vue';
+import SpinerProcess from './servis/SpinerProcess.vue';
+import ErrorMessage from './servis/ErrorMessage.vue';
 
 export default {
 

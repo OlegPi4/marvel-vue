@@ -1,6 +1,6 @@
 <template>
    <div class="error">
-      <img src="../img/error.gif" alt="error" width="180" >
+      <img src="../../img/error.gif" alt="error" width="180" >
    </div>
 </template>
 
