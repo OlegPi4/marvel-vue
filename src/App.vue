@@ -15,16 +15,18 @@
                 </ul>
             </nav>
         </header>
-        <main  v-if="showCharacters">
-            <ramdon-charact /> 
-            <div class="char__content">
-                <char-list @select-char="selectChar"/>
-                <char-info v-bind:selChar="selectedChar"
-                @select-comics="changePageComics"/>
-            </div>
-            <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
+        <main>
+            <section v-if="showCharacters">
+                <ramdon-charact /> 
+                <div class="char__content">
+                    <char-list @select-char="selectChar"/>
+                    <char-info :selChar="selectedChar"
+                    @select-comics="changePageComics"/>  
+               </div>
+                <img class="bg-decoration" src="../src/img/vision.png" alt="vision">
+            </section>
         </main> 
-        <main  v-if="showComics" >
+        <main  v-if="!showCharacters" >
             <div  class="app__banner">
                 <img src="../src/img/Avengers.png" alt="Avengers">
                 <div class="app__banner-text">
@@ -35,7 +37,8 @@
             </div>
             <comics-list />
         </main>  
-        
+        <modal-message  v-if="showModal" 
+         v-model:message="messageErrorSearch" />
     </div>
 </template>
 
@@ -45,6 +48,10 @@ import RamdonCharact from '@/components/RandomCharact.vue';
 import CharList from '@/components/CharList.vue';
 import CharInfo from '@/components/CharInfo.vue';
 import ComicsList from '@/components/ComicsList.vue';
+import ModalMessage from './components/servis/ModalMessage.vue';
+
+
+const caracterNotFound =  [ 1, 'The comics loading', 'Select a character on the "Characters" page !', '']
 
 export default {  
   name: 'App',
@@ -53,19 +60,25 @@ export default {
    CharList,
    CharInfo,
    ComicsList,
+   ModalMessage,
+   
   },
 
   data() {
     return {
       showCharacters: true,
-      showComics: false,
       selectedChar: null,
+      showModal: false,
+      messageErrorSearch: null,
     }
   },
 
   created() {
-    this.showCharacters = JSON.parse(localStorage.getItem('showCharacters'));
-    this.showComics = JSON.parse(localStorage.getItem('showComics'));
+    let showCh = JSON.parse(localStorage.getItem('showCharacters'));
+    if (showCh !== null) {
+         this.showCharacters = showCh;
+    } 
+    
   },
 
   methods: {
@@ -76,12 +89,17 @@ export default {
 
     changePageCaract() {
         this.showCharacters = true;  
-        this.showComics = false;
     },
 
     changePageComics() {
-        this.showCharacters = false;  
-        this.showComics = true;
+
+        let com = JSON.parse(localStorage.getItem('marvel-selected-comics'));
+        if (com) {
+            this.showCharacters = false;  
+        } else {
+            this.messageErrorSearch = caracterNotFound;
+            
+        }    
     }
 
   },
@@ -91,11 +109,15 @@ export default {
         localStorage.setItem('showCharacters', JSON.stringify(this.showCharacters));
     },
 
-    showComics() {
-        localStorage.setItem('showComics', JSON.stringify(this.showComics));
+    selectedChar() {
     },
 
-    selectedChar() {
+    messageErrorSearch() {
+        if(this.messageErrorSearch) {
+            this.showModal = true;
+        } else {
+            this.showModal = false;
+        }
     }
   }
 }

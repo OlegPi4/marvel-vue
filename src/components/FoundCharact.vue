@@ -11,9 +11,8 @@
       </div>
       <spiner-process v-if="loading" /> 
       <error-message v-if="error" />
-      
+      <modal-message  v-if="showModalMessage"  v-model:message="messageErrorSearch" />
    </section>
-   <modal-message  v-if="showModalMessage"  v-model:message="messageErrorSearch" />
 </template>
 
 <script>
@@ -34,10 +33,17 @@ export default {
       ModalSelect,
     },
 
+   emits: {
+      'pass-char': {
+         type: Object,
+         requred: false,
+         default: null,
+      } 
+    }, 
+
    data() {
       return {
           searchName: '',
-          searchID: null,
           searcCharacters: null,
           messageErrorSearch: null,
           loading: false,
@@ -75,9 +81,17 @@ export default {
             this.showModalMessage = false;
          }
          this.searchName = '';
-      }
+      },
+      searcCharacters() {
+         if (this.searcCharacters) {
+            if(this.searcCharacters.length === 1) {
+               this.$emit('pass-char', this.searcCharacters[0]);
+            }
+         }   
+      },
     }
 }
+
 </script>
 
 <style>

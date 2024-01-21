@@ -59,8 +59,9 @@ export default {
 }
 .dialog__content p {
    color: rgb(192, 59, 55);
-   font-size: 18px;
+   font-size: 20px;
    font-weight: 600;
+   padding-top: 10px;
    margin-bottom: 15px;
 }
 .footer {
@@ -70,9 +71,10 @@ export default {
    font-weight: 500;
    padding-top: 15px;
    color: #0c0755;
+   padding-right: 20px;
 }
 .footer button {
-   margin-left: 20px;
+   margin: 0 auto;
    padding: 4px 12px;
    text-transform: uppercase;
    font-size: 16px;

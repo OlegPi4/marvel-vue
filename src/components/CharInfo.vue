@@ -35,7 +35,7 @@
           <error-message v-if="error" />
           <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
             
-          <found-charact />
+          <found-charact @pass-char="foundedChar" />
           <div class="button__comics">
               <a href="#" class="button button__main"
                  @click="loadComicsPage">
@@ -52,6 +52,8 @@
           <div class="pulse skeleton__block"></div>
           <div class="pulse skeleton__block"></div>
           <div class="pulse skeleton__block"></div>
+          <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
+          <found-charact />
        </div>  
    </div>
 </template>
@@ -80,15 +82,15 @@ export default {
     },
 
     data() {
-      return {
-          //character: null, 
+       return {
           skeleton: true,
           error: false,
           loading: false,
           char: {},
           comics: {},
+          foundChar: {},
      
-      }
+       } 
     },
 
     emits: {
@@ -100,8 +102,8 @@ export default {
    },
 
     created () {
-      this.char = JSON.parse(localStorage.getItem('marvel-selectChar'));
-      this.comics = JSON.parse(localStorage.getItem('marvel-selected-comics'));
+        this.char = JSON.parse(localStorage.getItem('marvel-selectChar'));
+        this.comics = JSON.parse(localStorage.getItem('marvel-selected-comics'));
     },
 
     computed: {
@@ -112,48 +114,48 @@ export default {
     },
 
     methods: {
-    
+      foundedChar(char) {
+         this.char = char;
+         this.goToRequest();
+      },
+
       onError() {
          this.loading = false;
          this.error = true;
       },
 
-      getCharComics() {
-        this.comics = {};
-        this.loading = true;
-        getCharacterComics(this.selChar.id)
-          .then(responce => {
-             this.comics = responce;
-             this.loading = false;
-             localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
-          })
-          .catch(this.onError);
+      loadComicsPage() {
+         this.$emit('select-comics');
       },
 
-      loadComicsPage() {
-        localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
-        this.$emit('select-comics');
-      }
-    },
+      goToRequest() {
+        this.skeleton = false;
+        this.comics = {};
+        this.loading = true;
+        localStorage.setItem('marvel-selectChar', JSON.stringify(this.char));  
+        getCharacterComics(this.char.id)
+           .then(responce => {
+               this.comics = responce;
+               this.loading = false;
+               localStorage.setItem('marvel-selected-comics', JSON.stringify(this.comics));
+           })
+           .catch(this.onError);
+       } 
+     },
 
     watch: {
       selChar() {
           if(this.selChar) {
-              this.skeleton = false;
-              this.loading = true;
-              this.char = this.selChar;
-              this.getCharComics();
-                                  
-         localStorage.setItem('marvel-selectChar', JSON.stringify(this.selChar));
-              
+            this.char = this.selChar;
+            this.goToRequest();   
           }; 
       },
-      char() {
-            if(this.char) {
-               this.skeleton = false;
-            }
+
+       char() {
+          if(this.char) {
+             this.skeleton = false;
+          }
       }
- 
     }
 
 }
@@ -167,6 +169,5 @@ export default {
     display: flex;
     justify-content: center;
   }
- 
 
 </style>

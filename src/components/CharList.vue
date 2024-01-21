@@ -81,7 +81,7 @@ export default {
 
    created() {
       const offset = localStorage.getItem('marvel-offset');
-      this.offset = offset;
+      this.offset = offset ? offset : this.offset;
       this.getCharact(this.offset); 
 
    },
@@ -122,6 +122,7 @@ export default {
       },  
       
       selectChar(card) {
+         
          this.$emit('select-char', card)
       },
    },

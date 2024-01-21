@@ -1,5 +1,6 @@
 <template>
     <div class="randomchar">
+         
          <div v-if="!loading && !error" class="randomchar__block">
             <img 
                :src="urlImg" 
@@ -107,7 +108,7 @@ export default {
          getCharact(null, startRandomCharact)
          .then( resp => this.randomChar = resp)
          .catch(this.onError); 
-         }
+      },
    },
 
    watch: {
