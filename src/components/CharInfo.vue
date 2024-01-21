@@ -1,5 +1,6 @@
 <template>
    <div class="char__info">
+      <found-charact @pass-char="foundedChar" />
       <template  v-if="!skeleton"> 
          <div class="char__basics">
             <img :src="char.thumbnail"  :alt="char.name" style="object-fit: fill;">
@@ -35,7 +36,7 @@
           <error-message v-if="error" />
           <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
             
-          <found-charact @pass-char="foundedChar" />
+          <!-- <found-charact  @pass-char="foundedChar" /> -->
           <div class="button__comics">
               <a href="#" class="button button__main"
                  @click="loadComicsPage">
@@ -53,8 +54,9 @@
           <div class="pulse skeleton__block"></div>
           <div class="pulse skeleton__block"></div>
           <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
-          <found-charact />
-       </div>  
+          <!-- <found-charact @pass-char="foundedChar" /> -->
+         
+      </div>  
    </div>
 </template>
 
@@ -116,6 +118,7 @@ export default {
     methods: {
       foundedChar(char) {
          this.char = char;
+         this.skeleton = false;
          this.goToRequest();
       },
 

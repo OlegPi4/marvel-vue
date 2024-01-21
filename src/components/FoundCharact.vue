@@ -102,9 +102,13 @@ export default {
 
 <style>
   .search {
+      padding: 6px 2px;
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
+      -webkit-box-shadow: 1px 1px 4px 1px rgba(88,  84,  84, 0.5);
+      -moz-box-shadow: 1px 1px 4px 1px rgba(88,  84,  84, 0.5);
+      box-shadow: 1px 1px 4px 1px rgba(88,  84,  84, 0.5);
   }
   .search label {
       margin-right: 10px;
@@ -113,7 +117,7 @@ export default {
       padding: 3px 6px;
       background-color: #eee;
       font-size: 18px;
-      border: solid 1px #888;
+      border: none;
       border-radius: 4px;
       outline: none;
       font-weight: 600;
