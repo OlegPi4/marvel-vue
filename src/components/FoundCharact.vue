@@ -12,6 +12,9 @@
       <spiner-process v-if="loading" /> 
       <error-message v-if="error" />
       <modal-message  v-if="showModalMessage"  v-model:message="messageErrorSearch" />
+      <modal-select v-if="showModalSelect"
+      v-model:message="showModalSelect"
+      :characters="searcCharacters" />
    </section>
 </template>
 
@@ -86,7 +89,10 @@ export default {
          if (this.searcCharacters) {
             if(this.searcCharacters.length === 1) {
                this.$emit('pass-char', this.searcCharacters[0]);
+            } else if(this.searcCharacters.length > 1) {
+               this.showModalSelect = true;
             }
+            
          }   
       },
     }
