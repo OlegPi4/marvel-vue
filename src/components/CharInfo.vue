@@ -6,14 +6,14 @@
             <img :src="char.thumbnail"  :alt="char.name" style="object-fit: fill;">
             <div>
                 <div class="char__info-name">{{ char.name }}</div>
-                <div class="char__btns">
+                <!-- <div class="char__btns">
                     <a :href="char.homepage" class="button button__main">
                         <div class="inner">homepage</div>
                     </a>
                     <a :href="char.wiki" class="button button__secondary">
                         <div class="inner">Wiki</div>
                     </a>
-                </div>
+                </div> -->
             </div>
           </div>
           <div class="char__descr">
@@ -54,8 +54,6 @@
           <div class="pulse skeleton__block"></div>
           <div class="pulse skeleton__block"></div>
           <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
-          <!-- <found-charact @pass-char="foundedChar" /> -->
-         
       </div>  
    </div>
 </template>

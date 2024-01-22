@@ -14,15 +14,12 @@
             <div class="randomchar__info">
                <p class="randomchar__name">{{ name }}</p> 
                <p class="randomchar__descr">
-                     {{ description }}
+                  {{ description }}
                </p>
                <div class="randomchar__btns">
-                     <a :href="pathHomepage" class="button button__main">
-                        <div class="inner">homepage</div>
-                     </a>
-                     <a :href="pathWiki" class="button button__secondary">
-                        <div class="inner">Wiki</div>
-                     </a>
+                  <a :href="link" class="button button__main">
+                     <div class="inner">comics</div>
+                  </a>
                </div>
             </div>
          </div>
@@ -73,18 +70,17 @@ export default {
    },
 
    computed: {
+      link() {
+         return this.randomChar[0].linkComics.url;
+      },
+
       urlImg() {
          return this.randomChar[0].thumbnail;
       },
       name() {
          return this.randomChar[0].name;
       },
-      pathHomepage() {
-         return this.randomChar[0].homepage;
-      },
-      pathWiki() {
-         return this.randomChar[0].wiki;
-      },
+    
       description() {
          let des = (this.randomChar[0].description) ? this.randomChar[0].description : "There is no character description." ;
          if (des.length > 200) {
@@ -96,7 +92,7 @@ export default {
    },
 
    methods: {
-     
+    
       onError() {
          this.loading = false;
          this.error = true;

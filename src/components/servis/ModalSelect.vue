@@ -1,8 +1,30 @@
 <template>
     <div class="dialog"  @click="hideDialog" >
       <div  @click.stop class="dialog__content"> 
-        
-      </div>
+         <h2 class="title__select">select a character</h2>
+         <ul  class="char__grid" 
+              style="max-height: 680px;
+              overflow: hidden;
+              overflow-y: scroll;
+              padding-top: 22px;">
+            
+            <li v-for="card in characters"
+            :key="card.thumbnail"
+            class="char__item "
+            @click="selectChar(card)"
+            @mouseover="pointMouse(card.id)"
+            @mouseout="clearPointMouse()"
+            :class="{
+                'char__item_selected': currentID == card.id,  
+            }"
+            :tabindex = "1 + characters.indexOf(card)"
+            >
+                  <img :src=card.thumbnail alt="image-character" style="object-fit: fill;" >
+                  <div class="char__name">{{ card.name }}</div>
+            </li>
+         </ul>
+ 
+      </div>   
    </div>
 </template>
 
@@ -20,14 +42,21 @@ export default {
 
    emits: {
       'one-char': {
-         type: Array,
+         type: Object,
          require: false,
          default: null,
+      },
+      'update:message': {
+         type: Boolean,
+         require: false,
       }
    },
 
    data() {
       return {
+         cardsCharacters: [],     
+         currentID: null,      
+         offset: 1,
 
       }
    },
@@ -35,6 +64,22 @@ export default {
    methods: {
       hideDialog() {		
          this.$emit('update:message', false)
+      },
+      pointMouse(ix) {
+          this.currentID = ix;
+      },
+      clearPointMouse() {
+          this.currentID = null;
+      },
+      selectChar(card) {
+         this.$emit('one-char', card)
+         this.hideDialog();
+      },
+
+   },
+   watch: {
+      characters() {
+         this.cardsCharacters = this.characters;
       }
    }
 
@@ -48,7 +93,6 @@ export default {
    bottom: 0;
    right: 0;
    background: rgba(0, 0, 155, 0.15); 
-   
    position: fixed;
    display: flex;
    z-index: 5;

@@ -113,7 +113,7 @@ export default {
       },
       getCharact(offset) {
           this.loading = true; 
-          getCharact(offset, null).then(responce => {
+          getCharact(offset).then(responce => {
              this.cardsCharacters = responce;
              this.loading = false;
              localStorage.setItem('marvel-offset', this.offset)
@@ -122,7 +122,6 @@ export default {
       },  
       
       selectChar(card) {
-         
          this.$emit('select-char', card)
       },
    },

@@ -40,6 +40,7 @@ function dataConvertionChar(item) {
       thumbnail: item.thumbnail.path + '.' + item.thumbnail.extension,
       homepage: item.urls[0].url ? item.urls[0].url : '',
       wiki: item.urls[1].url ? item.urls[1].url : '',
+      linkComics: item.urls[2] ? item.urls[2] : '',
       comics: item.comics.items ? item.comics.items : '',
    }
 };

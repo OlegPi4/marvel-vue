@@ -124,6 +124,8 @@ export default {
 </script>
 
 <style>
-
+.app._lock {
+    overflow: hidden;
+}
 
 </style>

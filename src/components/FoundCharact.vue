@@ -14,7 +14,8 @@
       <modal-message  v-if="showModalMessage"  v-model:message="messageErrorSearch" />
       <modal-select v-if="showModalSelect"
       v-model:message="showModalSelect"
-      :characters="searcCharacters" />
+      :characters="searcCharacters"
+      @one-char="changeOneChar" />
    </section>
 </template>
 
@@ -67,13 +68,21 @@ export default {
             this.loading = false;
             this.messageErrorSearch = this.searcCharacters.length === 0 ? caracterNotFound : null;
          })
-         .catch(this.onError)
+         .catch(this.onError);
+         this.searchName = '';
       },
       
       onError() {
          this.loading = false;
          this.error = true;
       },
+
+      changeOneChar(ix) {
+         
+         this.searcCharacters = [];
+         this.searcCharacters.push(ix); 
+      }
+
     },
 
     watch: {
