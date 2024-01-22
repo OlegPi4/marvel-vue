@@ -63,7 +63,7 @@ export default {
          error: false,
          imgObjectFit: false,
       }
-   },
+   }, 
 
    created() {
       this.getRandomChar();
