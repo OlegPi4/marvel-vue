@@ -120,9 +120,11 @@ export default {
       box-shadow: 1px 1px 4px 1px rgba(88,  84,  84, 0.5);
   }
   .search label {
+      padding-top: 2px;
       margin-right: 10px;
   }
   .search input { 
+      max-width: 200px;
       padding: 3px 6px;
       background-color: #eee;
       font-size: 18px;

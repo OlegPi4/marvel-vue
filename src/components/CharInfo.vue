@@ -6,14 +6,7 @@
             <img :src="char.thumbnail"  :alt="char.name" style="object-fit: fill;">
             <div>
                 <div class="char__info-name">{{ char.name }}</div>
-                <!-- <div class="char__btns">
-                    <a :href="char.homepage" class="button button__main">
-                        <div class="inner">homepage</div>
-                    </a>
-                    <a :href="char.wiki" class="button button__secondary">
-                        <div class="inner">Wiki</div>
-                    </a>
-                </div> -->
+
             </div>
           </div>
           <div class="char__descr">
@@ -23,8 +16,8 @@
           </div> 
           <ul 
               v-if="comics"
-              class="char__comics-list"
-              style="max-height: 368px; overflow: hidden; overflow-y: scroll;">
+              class="char__comics-list scroll-type"
+          >
                   <li  v-for="item in comics"
                   :key="item.id"
                   class="char__comics-item">
@@ -35,8 +28,6 @@
           <spiner-process v-if="loading" />
           <error-message v-if="error" />
           <p class="char__select" style="padding: 15px 0px;">Please select a character to see information</p> 
-            
-          <!-- <found-charact  @pass-char="foundedChar" /> -->
           <div class="button__comics">
               <a href="#" class="button button__main"
                  @click="loadComicsPage">
@@ -163,6 +154,30 @@ export default {
 </script>
 
 <style>
+   .scroll-type {
+    max-height: 386px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #939393 #eaf6fa;
+   }
+   .scroll-type::-webkit-scrollbar {
+       
+        width: 14px;
+   }
+   .scroll-type::-webkit-scrollbar-track {
+        background: #eaf6fa;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+        border-radius: 8px;
+   }
+   .scroll-type::-webkit-scrollbar-thumb {
+        background: #939393;
+        border-radius: 6px;
+        border: 3px solid #d4d4d4;
+   }
+   .scroll-type::-webkit-scrollbar-thumb:hover {
+        background: #7c7c7c;
+    }
   .comics__name:hover {
       color: blueviolet;
   }

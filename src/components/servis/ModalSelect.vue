@@ -2,7 +2,7 @@
     <div class="dialog"  @click="hideDialog" >
       <div  @click.stop class="dialog__content"> 
          <h2 class="title__select">select a character</h2>
-         <ul  class="char__grid" 
+         <ul  class="char__grid scroll-type" 
               style="max-height: 680px;
               overflow: hidden;
               overflow-y: scroll;
