@@ -16,8 +16,9 @@
           </div> 
           <ul 
               v-if="comics"
-              class="char__comics-list scroll-type"
-          >
+              class="char__comics-list "
+              :class="{'scroll-type': comics.length > 10}"
+            > 
                   <li  v-for="item in comics"
                   :key="item.id"
                   class="char__comics-item">
@@ -101,7 +102,7 @@ export default {
         descript() {
             let des = (this.char.description) ? this.char.description : "There is no character description." ;
             return des;
-        }
+        },
     },
 
     methods: {
@@ -147,6 +148,9 @@ export default {
           if(this.char) {
              this.skeleton = false;
           }
+      },
+      comics() {
+         console.log(this.$refs);
       }
     }
 
