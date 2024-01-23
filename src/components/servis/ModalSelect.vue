@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 
-.scroll-type {
+  .scroll-type {
     max-height: 700px;
     overflow: hidden;
     overflow-y: scroll;
@@ -122,7 +122,7 @@ export default {
    z-index: 5;
 }
 .dialog__content {  
-   Margin: auto;
+   margin: 60px 30px;
    background: #fff;
    border-radius: 12px;
    min-height: 50px;

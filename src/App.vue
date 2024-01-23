@@ -28,12 +28,18 @@
         </main> 
         <main  v-if="!showCharacters" >
             <div  class="app__banner">
-                <img src="../src/img/Avengers.png" alt="Avengers">
+                <div>
+                    <img src="../src/img/Avengers.png" alt="Avengers" >    
+                </div>
+                
                 <div class="app__banner-text">
                     New comics every week!<br>
                     Stay tuned!
                 </div>
-                <img src="../src/img/Avengers_logo.png" alt="Avengers logo">
+                <div>
+                    <img src="../src/img/Avengers_logo.png" alt="Avengers logo">    
+                </div>
+                
             </div>
             <comics-list />
         </main>  

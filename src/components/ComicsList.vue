@@ -74,12 +74,16 @@ export default {
             currentPage: 1,
             numberComics: 0,
             maxPage: null,
+            width: 1100,
       }
    },
    created() {
       this.offsetComics = localStorage.getItem('marvel-offset-comics');
       this.cardsComics = JSON.parse(localStorage.getItem('marvel-selected-comics'));
       this.currentChar = JSON.parse(localStorage.getItem('marvel-selectChar'));
+   
+      this.width = window.innerWidth;
+   
    },
 
    computed: {
@@ -131,5 +135,8 @@ export default {
 </script>
 
 <style>
-
+   .comics__grid {
+      column-gap: 20px;
+      justify-content: center;
+   }
 </style>

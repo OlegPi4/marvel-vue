@@ -1,7 +1,6 @@
 <template>
    <div class="char__list">
          <ul v-if="!loading && !error" class="char__grid">
-            
             <li v-for="card in cardsCharacters"
             :key="card.thumbnail"
             class="char__item "
@@ -24,14 +23,14 @@
             <button
                 @click="loadStart"
                 class="button button__main button__long"
-                :style=" offset< 10 ? 'display: none;' : '' "
+                :style=" offset< numCardsChar + 1 ? 'display: none;' : '' "
                 >
                 <div class="inner">to the begining</div>
             </button>
             <button
                 @click="loadPrev"
                 class="button button__main button__long"
-                :style=" offset< 10 ? 'display: none;' : '' "
+                :style=" offset< numCardsChar + 1 ? 'display: none;' : '' "
                 >
                 <div class="inner">load prev</div>
             </button>
@@ -41,9 +40,7 @@
                 :style=" offset > 1500 ? 'display: none;' : '' ">
                 <div class="inner">load next</div>
             </button>  
-         
          </div>
-         
    </div>
 </template>
 
@@ -69,6 +66,7 @@ export default {
             loading: true,
             offset: 1,
             error:false,
+            numCardsChar: 9,
       }
    },
 
@@ -80,10 +78,29 @@ export default {
    },
 
    created() {
+      let width = window.innerWidth;
+      if (width > 1100) {
+         this.numCardsChar = 9;
+      } else if (width <= 1100 && width > 900) {
+         this.numCardsChar = 6;
+      } else {
+         this.numCardsChar = 3;
+      }
+
       const offset = localStorage.getItem('marvel-offset');
       this.offset = offset ? offset : this.offset;
       this.getCharact(this.offset); 
-
+   },
+   
+   beforeUpdate() {
+      let width = window.innerWidth;
+      if (width > 1100) {
+         this.numCardsChar = 9;
+      } else if (width <= 1100 && width > 900) {
+         this.numCardsChar = 6;
+      } else {
+         this.numCardsChar = 3;
+      }
    },
 
    methods: {
@@ -104,16 +121,16 @@ export default {
          this.getCharact(this.offset);  
       },
       loadNext() {
-          this.offset = +this.offset + 9;
+          this.offset = +this.offset + this.numCardsChar;
           this.getCharact(this.offset);  
       },
       loadPrev() {
-          this.offset = +this.offset - 9;
+          this.offset = +this.offset - this.numCardsChar;
           this.getCharact(this.offset);
       },
       getCharact(offset) {
           this.loading = true; 
-          getCharact(offset).then(responce => {
+          getCharact(offset, null, null, this.numCardsChar).then(responce => {
              this.cardsCharacters = responce;
              this.loading = false;
              localStorage.setItem('marvel-offset', this.offset)
@@ -133,6 +150,8 @@ export default {
 <style>
    .buttons {
       display: flex;
+      flex-wrap: wrap;
    }
+  
  
 </style>

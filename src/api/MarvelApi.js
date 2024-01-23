@@ -8,11 +8,11 @@ const APICHARLIMIT = 9;
 const APICOMICSLIMIT = 8;
 
 // получение данных персонажей
-export const getCharact = async (offset, id, name) => {
+export const getCharact = async (offset, id, name, number = APICHARLIMIT) => {
    
    let url = '';
    if (offset) {
-      url = `${APIBASE}characters?limit=${APICHARLIMIT}&offset=${offset}&${APIKEY}`;
+      url = `${APIBASE}characters?limit=${number}&offset=${offset}&${APIKEY}`;
    } else if (id) {
       url = `${APIBASE}characters/${id}?&${APIKEY}`; 
    } else if (name) {

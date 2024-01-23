@@ -32,18 +32,24 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     margin: 0
 }
 .app {
-    width: 1100px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 50px 0 50px 0;
+    padding: 50px 15px 50px 15px;
     position: relative
 }
 .app__header {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-wrap: wrap;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between
+}
+@media screen and (max-width: 550px) {
+    .app__header {
+        justify-content: center;
+    }
 }
 .app__title {
     font-weight: bold;
@@ -53,7 +59,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .app__title span {
     color: #9F0013
 }
+
 .app__menu ul {
+    margin-top: 3px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -71,22 +79,29 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     color: #9F0013
 }
 .app__banner {
-    width: 100%;
+    max-width: 100%;
     background-color: #232222;
-    height: 100px;
     padding: 0 25px 0 45px;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 152px auto 133px;
-    grid-template-columns: 152px auto 133px
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+
+@media screen and (max-width: 525px) {
+    .app__banner {
+        justify-content: center;
+    }
+}
+    
+
 .app__banner-text {
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
     color: #FFFFFF;
-    padding-left: 83px;
-    padding-top: 18px
+    padding-top: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .app .bg-decoration {
     position: absolute;
@@ -105,6 +120,13 @@ main {
     grid-template-columns: repeat(2, 50%);
     -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+} 
+
+@media screen and (max-width: 850px) {
+    .randomchar {
+        display: flex;
+        flex-direction: column;
+    }
 } 
 .randomchar__block {
     padding: 40px 35px;
@@ -181,23 +203,51 @@ main {
     margin-top: 50px;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 650px 425px;
-    grid-template-columns: 650px 425px;
-    -webkit-column-gap: 25px;
-    column-gap: 25px;
+    -ms-grid-columns: 61% 37%;
+    grid-template-columns: 61% 37%;
+    -webkit-column-gap: 2%;
+    column-gap: 2%;
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: start
 }
-.char__grid {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (200px)[3]; 
-    grid-template-columns: repeat(3, 200px);
-    -webkit-column-gap: 25px;
-    column-gap: 25px;
-    row-gap: 30px
+@media screen and (max-width: 900px) {
+    .char__content {
+        -ms-grid-columns: 49% 49%;
+        grid-template-columns: 49% 49%;
+    }
+} 
+@media screen and (max-width: 800px) {
+    .char__content {
+        -ms-grid-columns: 40% 58%;
+        grid-template-columns: 40% 58%;
+    }
+}   
+@media screen and (max-width: 580px ) {
+    .char__content {
+        justify-content: center;
+        -ms-grid-columns: 90%;
+        grid-template-columns: 90%;
+        
+    }
+    .char__info {
+        order: 1;
+        margin-bottom: 30px;
+    }
+    .char__list {
+        order: 2;
+    }
 }
+
+.char__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 670px;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
 .char__item {
     width: 200px;
     height: 318px;
@@ -310,6 +360,12 @@ main {
     -ms-flex-pack: justify;
     justify-content: space-between;
     row-gap: 55px
+}
+
+@media screen and (max-width: 516px ) {
+    .comics__grid {
+        justify-content: center;
+    }
 }
 .comics__item {
     -webkit-transition: 0.3s -webkit-transform;
@@ -460,6 +516,12 @@ main {
     width: 170px;
     margin: 45px auto 0 auto
 }
+
+@media screen and (max-width: 1100px) {
+    .button__long {
+        width: 140px;
+    }
+} 
 .button .inner {
     position: relative;
     background-color: #9F0013;

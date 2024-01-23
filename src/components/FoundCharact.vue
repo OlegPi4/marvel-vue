@@ -2,12 +2,15 @@
    <section>
       <div class="search">
          <label class="char__select">search by name</label>
-         <input type="text" required placeholder="name" v-model="searchName">
-         <button 
-         @click="searchByName"
-         :disabled="searchName.length < 3? true : false "
-         :style=" searchName.length > 2 ? 'border: solid 1px #4cc177;' : 'border: solid 1px #f17e7e;' "
-         >ok</button>
+         <div class="searc__input">
+            <input type="text" required placeholder="name" v-model="searchName">
+            <button 
+            @click="searchByName"
+            :disabled="searchName.length < 3? true : false "
+            :style=" searchName.length > 2 ? 'border: solid 1px #4cc177;' : 'border: solid 1px #f17e7e;' "
+            >ok</button>   
+         </div>
+         
       </div>
       <spiner-process v-if="loading" /> 
       <error-message v-if="error" />
@@ -111,8 +114,9 @@ export default {
 
 <style>
   .search {
-      padding: 6px 2px;
+      padding: 6px 4px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       margin-bottom: 20px;
       -webkit-box-shadow: 1px 1px 4px 1px rgba(88,  84,  84, 0.5);
@@ -123,9 +127,14 @@ export default {
       padding-top: 2px;
       margin-right: 10px;
   }
-  .search input { 
+  .searc__input {
+   padding-top: 5px;
+   display: flex;
+   justify-content: center;
+  }
+  .searc__input input { 
       max-width: 200px;
-      padding: 3px 6px;
+      padding: 4px 4px;
       background-color: #eee;
       font-size: 18px;
       border: none;
@@ -134,7 +143,7 @@ export default {
       font-weight: 600;
       margin-right: 5px;
    }
-   .search button {
+   .searc__input button {
       font-size: 18px;
       font-weight: 400;
       padding: 1px 6px;

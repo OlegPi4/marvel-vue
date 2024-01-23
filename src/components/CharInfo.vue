@@ -105,6 +105,8 @@ export default {
         },
     },
 
+
+
     methods: {
       foundedChar(char) {
          this.char = char;
@@ -149,9 +151,7 @@ export default {
              this.skeleton = false;
           }
       },
-      comics() {
-         console.log(this.$refs);
-      }
+      
     }
 
 }
