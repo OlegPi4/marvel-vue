@@ -12,10 +12,12 @@
                   }"
             >
             <div class="randomchar__info">
-               <p class="randomchar__name">{{ name }}</p> 
-               <p class="randomchar__descr">
-                  {{ description }}
-               </p>
+               <div>
+                  <p class="randomchar__name">{{ name }}</p> 
+                  <p class="randomchar__descr">
+                     {{ description }}
+                  </p>
+               </div>
                <div class="randomchar__btns">
                   <a :href="link" class="button button__main">
                      <div class="inner">comics</div>
@@ -38,7 +40,10 @@
             <button @click.stop="getRandomChar" class="button button__main">
                <div class="inner">try it</div>
             </button>
-            <img src="../img/mjolnir.png" alt="mjolnir" class="randomchar__decoration">
+            <div class="randomchar__img-baner">
+               <img src="../img/mjolnir.png" alt="mjolnir" class="randomchar__decoration">   
+            </div>
+            
          </div>
    </div>
 </template>
@@ -126,5 +131,9 @@ export default {
 </script>
 
 <style>
-
+   @media screen and (max-width: 450px) {
+      .randomchar__img-baner {
+         display: none;
+      }
+   }   
 </style>
