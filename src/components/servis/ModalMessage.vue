@@ -44,11 +44,11 @@ export default {
    z-index: 5;
 }
 .dialog__content {  
-   Margin: auto;
+   margin: auto;
    background: #fff;
    border-radius: 12px;
    min-height: 50px;
-   min-width: 300px;
+   min-width: 280px;
    padding: 20px;
    z-index: 5;
 }

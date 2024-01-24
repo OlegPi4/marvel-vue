@@ -94,9 +94,16 @@ export default {
     scrollbar-width: thin;
     scrollbar-color: #939393 #eaf6fa;
    }
+
+   @media screen and (max-width: 550px) {
+      .scroll-type {
+         max-height: 650px;
+         padding-top: 15px;         
+      }
+   }
+     
    .scroll-type::-webkit-scrollbar {
-       
-        width: 14px;
+      width: 14px;
    }
    .scroll-type::-webkit-scrollbar-track {
         background: #eaf6fa;
@@ -119,14 +126,16 @@ export default {
    background: rgba(0, 0, 155, 0.15); 
    position: fixed;
    display: flex;
+   display: -webkit-box;
+   display: -ms-flexbox;
    z-index: 5;
 }
 .dialog__content {  
-   margin: 60px 30px;
+   margin: auto;
    background: #fff;
    border-radius: 12px;
    min-height: 50px;
-   min-width: 300px;
+   min-width: 280px;
    padding: 20px;
    z-index: 5;
 }
